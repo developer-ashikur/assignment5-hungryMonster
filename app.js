@@ -1,19 +1,20 @@
 const foodName = document.getElementById('food-name');
-
+const errorMessage = document.getElementById('error-message');
 
 const getFoodItems = () => {
     fetch (`https://www.themealdb.com/api/json/v1/1/search.php?s=${foodName.value}`)
-    // fetch (`https://www.themealdb.com/api/json/v1/1/search.php?f=${foodName.value}`)
     .then (res => res.json())
     .then (data => displaySearchResult(data.meals))
+    .catch(error => {
+        errorMessage.style.display = 'block';
+    })
 }
+
 const displaySearchResult = meals => {
     const foodItems = document.getElementById('food-items');
     meals.forEach(meal => {
-        console.log(meal);
         const mealDiv = document.createElement('div');
         mealDiv.className = 'meal-item';
-        // mealDiv.addEventListener('click', showDetails(meal.strMeal));
         const displayMeal = `
         <img src="${meal.strMealThumb}" onclick="showDetails('${meal.strMeal}')">
         <h5 onclick="showDetails('${meal.strMeal}')">${meal.strMeal}</h5>
@@ -29,7 +30,6 @@ const showDetails = mealName => {
     .then (res => res.json())
     .then (data => renderFoodDetails(data.meals[0]))
 }
-
 
 const renderFoodDetails = mealData => {
     const showDetails = document.getElementById('show-details');

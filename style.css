@@ -2,6 +2,11 @@ img{
     max-width: 100%;
     border-radius: 10px 10px 0 0;
 }
+#error-message{
+    display: none;
+    color: red;
+    text-align: center;
+}
 #food-items{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -15,12 +20,11 @@ img{
 .meal-item h5{
     padding: 10px 0;
 }
-#show-details{}
-.meal-details{}
 .meal-details img{
     border-radius: 10px;
+    height: 400px;
+    width: auto;
 }
-.meal-details ul{}
 .meal-details ul li{
     list-style: none;
 }
