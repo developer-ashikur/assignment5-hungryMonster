@@ -2,6 +2,7 @@ const foodName = document.getElementById('food-name');
 const errorMessage = document.getElementById('error-message');
 
 const getFoodItems = () => {
+    errorMessage.style.display = 'none';
     fetch (`https://www.themealdb.com/api/json/v1/1/search.php?s=${foodName.value}`)
     .then (res => res.json())
     .then (data => displaySearchResult(data.meals))
@@ -12,6 +13,7 @@ const getFoodItems = () => {
 
 const displaySearchResult = meals => {
     const foodItems = document.getElementById('food-items');
+    foodItems.innerHTML= '';
     meals.forEach(meal => {
         const mealDiv = document.createElement('div');
         mealDiv.className = 'meal-item';
@@ -33,6 +35,7 @@ const showDetails = mealName => {
 
 const renderFoodDetails = mealData => {
     const showDetails = document.getElementById('show-details');
+    showDetails.innerHTML= '';
     const detailsDiv = document.createElement('div');
     detailsDiv.className = 'meal-details';
     const mealDetails = `
